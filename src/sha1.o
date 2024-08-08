@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+ <key>clang_version</key>
+<string>Apple clang version 15.0.0 (clang-1500.3.9.4)</string>
+ <key>diagnostics</key>
+ <array>
+  <dict>
+   <key>notes</key>
+   <array>
+    <dict>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>96</integer>
+      <key>col</key><integer>2</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>96</integer>
+         <key>col</key><integer>2</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>101</integer>
+         <key>col</key><integer>34</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>extended_message</key>
+     <string>Similar code here</string>
+     <key>message</key>
+     <string>Similar code here</string>
+    </dict>
+   </array>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>95</integer>
+      <key>col</key><integer>2</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>95</integer>
+         <key>col</key><integer>2</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>100</integer>
+         <key>col</key><integer>34</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Duplicate code detected</string>
+     <key>message</key>
+     <string>Duplicate code detected</string>
+    </dict>
+   </array>
+   <key>description</key><string>Duplicate code detected</string>
+   <key>category</key><string>Code clone</string>
+   <key>type</key><string>Exact code clone</string>
+   <key>check_name</key><string>alpha.clone.CloneChecker</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>1c278eea1a2344fd69db31843d7d71fe</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>95</integer>
+   <key>col</key><integer>2</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  <key>ExecutedLines</key>
+  <dict>
+   <key>0</key>
+   <array>
+    <integer>95</integer>
+    <integer>96</integer>
+   </array>
+  </dict>
+  </dict>
+  <dict>
+   <key>notes</key>
+   <array>
+    <dict>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>108</integer>
+      <key>col</key><integer>3</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>108</integer>
+         <key>col</key><integer>3</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>110</integer>
+         <key>col</key><integer>61</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>extended_message</key>
+     <string>Similar code here</string>
+     <key>message</key>
+     <string>Similar code here</string>
+    </dict>
+   </array>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>107</integer>
+      <key>col</key><integer>3</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>107</integer>
+         <key>col</key><integer>3</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>109</integer>
+         <key>col</key><integer>61</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Duplicate code detected</string>
+     <key>message</key>
+     <string>Duplicate code detected</string>
+    </dict>
+   </array>
+   <key>description</key><string>Duplicate code detected</string>
+   <key>category</key><string>Code clone</string>
+   <key>type</key><string>Exact code clone</string>
+   <key>check_name</key><string>alpha.clone.CloneChecker</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>15f043c57fc06a7ed664097b346543dc</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>107</integer>
+   <key>col</key><integer>3</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  <key>ExecutedLines</key>
+  <dict>
+   <key>0</key>
+   <array>
+    <integer>107</integer>
+    <integer>108</integer>
+   </array>
+  </dict>
+  </dict>
+ </array>
+ <key>files</key>
+ <array>
+  <string>sha1.c</string>
+ </array>
+</dict>
+</plist>
