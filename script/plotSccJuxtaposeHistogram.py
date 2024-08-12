@@ -60,7 +60,7 @@ def plot_data(file_data1, file_data2, metric):
     fig, ax = plt.subplots(figsize=(14, 8))  # Width: 14, Height: 8
 
     # Plotting the selected metric for both files as histograms
-    rects1 = ax.bar(x - width/2, y1_values, width, color='royalblue', label='ChatGPT')
+    rects1 = ax.bar(x - width/2, y1_values, width, color='royalblue', label='ChatGPT-4o')
     rects2 = ax.bar(x + width/2, y2_values, width, color='sandybrown', label='Human')
 
     # Add labels, title, and custom x-axis tick labels

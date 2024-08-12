@@ -33,7 +33,7 @@ def read_questions_from_file(file_path):
     questions = dict(zip(titles, prompts))
     return questions
 
-file_path = "prompts2.txt"
+file_path = "prompts.txt"
 questions = read_questions_from_file(file_path)
 # ask chatgpt for a response for each leet code question (prompt)
 for question in questions:

@@ -7,170 +7,282 @@
  <key>diagnostics</key>
  <array>
   <dict>
-   <key>notes</key>
-   <array>
-    <dict>
-     <key>location</key>
-     <dict>
-      <key>line</key><integer>96</integer>
-      <key>col</key><integer>2</integer>
-      <key>file</key><integer>0</integer>
-     </dict>
-     <key>ranges</key>
-     <array>
-       <array>
-        <dict>
-         <key>line</key><integer>96</integer>
-         <key>col</key><integer>2</integer>
-         <key>file</key><integer>0</integer>
-        </dict>
-        <dict>
-         <key>line</key><integer>101</integer>
-         <key>col</key><integer>34</integer>
-         <key>file</key><integer>0</integer>
-        </dict>
-       </array>
-     </array>
-     <key>extended_message</key>
-     <string>Similar code here</string>
-     <key>message</key>
-     <string>Similar code here</string>
-    </dict>
-   </array>
    <key>path</key>
    <array>
     <dict>
      <key>kind</key><string>event</string>
      <key>location</key>
      <dict>
-      <key>line</key><integer>95</integer>
-      <key>col</key><integer>2</integer>
+      <key>line</key><integer>113</integer>
+      <key>col</key><integer>5</integer>
       <key>file</key><integer>0</integer>
      </dict>
      <key>ranges</key>
      <array>
        <array>
         <dict>
-         <key>line</key><integer>95</integer>
-         <key>col</key><integer>2</integer>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>9</integer>
          <key>file</key><integer>0</integer>
         </dict>
         <dict>
-         <key>line</key><integer>100</integer>
-         <key>col</key><integer>34</integer>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>25</integer>
          <key>file</key><integer>0</integer>
         </dict>
        </array>
      </array>
      <key>depth</key><integer>0</integer>
      <key>extended_message</key>
-     <string>Duplicate code detected</string>
+     <string>Value stored to &apos;a&apos; is never read</string>
      <key>message</key>
-     <string>Duplicate code detected</string>
+     <string>Value stored to &apos;a&apos; is never read</string>
     </dict>
    </array>
-   <key>description</key><string>Duplicate code detected</string>
-   <key>category</key><string>Code clone</string>
-   <key>type</key><string>Exact code clone</string>
-   <key>check_name</key><string>alpha.clone.CloneChecker</string>
+   <key>description</key><string>Value stored to &apos;a&apos; is never read</string>
+   <key>category</key><string>Unused code</string>
+   <key>type</key><string>Dead assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
    <!-- This hash is experimental and going to change! -->
-   <key>issue_hash_content_of_line_in_context</key><string>1c278eea1a2344fd69db31843d7d71fe</string>
+   <key>issue_hash_content_of_line_in_context</key><string>dcc144b96e283d50e97bff9be48092b5</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>SHA1Transform</string>
+  <key>issue_hash_function_offset</key><string>49</string>
   <key>location</key>
   <dict>
-   <key>line</key><integer>95</integer>
-   <key>col</key><integer>2</integer>
+   <key>line</key><integer>113</integer>
+   <key>col</key><integer>5</integer>
    <key>file</key><integer>0</integer>
   </dict>
   <key>ExecutedLines</key>
   <dict>
    <key>0</key>
    <array>
-    <integer>95</integer>
-    <integer>96</integer>
+    <integer>113</integer>
    </array>
   </dict>
   </dict>
   <dict>
-   <key>notes</key>
-   <array>
-    <dict>
-     <key>location</key>
-     <dict>
-      <key>line</key><integer>108</integer>
-      <key>col</key><integer>3</integer>
-      <key>file</key><integer>0</integer>
-     </dict>
-     <key>ranges</key>
-     <array>
-       <array>
-        <dict>
-         <key>line</key><integer>108</integer>
-         <key>col</key><integer>3</integer>
-         <key>file</key><integer>0</integer>
-        </dict>
-        <dict>
-         <key>line</key><integer>110</integer>
-         <key>col</key><integer>61</integer>
-         <key>file</key><integer>0</integer>
-        </dict>
-       </array>
-     </array>
-     <key>extended_message</key>
-     <string>Similar code here</string>
-     <key>message</key>
-     <string>Similar code here</string>
-    </dict>
-   </array>
    <key>path</key>
    <array>
     <dict>
      <key>kind</key><string>event</string>
      <key>location</key>
      <dict>
-      <key>line</key><integer>107</integer>
-      <key>col</key><integer>3</integer>
+      <key>line</key><integer>113</integer>
+      <key>col</key><integer>9</integer>
       <key>file</key><integer>0</integer>
      </dict>
      <key>ranges</key>
      <array>
        <array>
         <dict>
-         <key>line</key><integer>107</integer>
-         <key>col</key><integer>3</integer>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>13</integer>
          <key>file</key><integer>0</integer>
         </dict>
         <dict>
-         <key>line</key><integer>109</integer>
-         <key>col</key><integer>61</integer>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>25</integer>
          <key>file</key><integer>0</integer>
         </dict>
        </array>
      </array>
      <key>depth</key><integer>0</integer>
      <key>extended_message</key>
-     <string>Duplicate code detected</string>
+     <string>Although the value stored to &apos;b&apos; is used in the enclosing expression, the value is never actually read from &apos;b&apos;</string>
      <key>message</key>
-     <string>Duplicate code detected</string>
+     <string>Although the value stored to &apos;b&apos; is used in the enclosing expression, the value is never actually read from &apos;b&apos;</string>
     </dict>
    </array>
-   <key>description</key><string>Duplicate code detected</string>
-   <key>category</key><string>Code clone</string>
-   <key>type</key><string>Exact code clone</string>
-   <key>check_name</key><string>alpha.clone.CloneChecker</string>
+   <key>description</key><string>Although the value stored to &apos;b&apos; is used in the enclosing expression, the value is never actually read from &apos;b&apos;</string>
+   <key>category</key><string>Unused code</string>
+   <key>type</key><string>Dead nested assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
    <!-- This hash is experimental and going to change! -->
-   <key>issue_hash_content_of_line_in_context</key><string>15f043c57fc06a7ed664097b346543dc</string>
+   <key>issue_hash_content_of_line_in_context</key><string>a1d6cee7983ba980d28111d61e948734</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>SHA1Transform</string>
+  <key>issue_hash_function_offset</key><string>49</string>
   <key>location</key>
   <dict>
-   <key>line</key><integer>107</integer>
-   <key>col</key><integer>3</integer>
+   <key>line</key><integer>113</integer>
+   <key>col</key><integer>9</integer>
    <key>file</key><integer>0</integer>
   </dict>
   <key>ExecutedLines</key>
   <dict>
    <key>0</key>
    <array>
-    <integer>107</integer>
-    <integer>108</integer>
+    <integer>113</integer>
+   </array>
+  </dict>
+  </dict>
+  <dict>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>113</integer>
+      <key>col</key><integer>13</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>17</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>25</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Although the value stored to &apos;c&apos; is used in the enclosing expression, the value is never actually read from &apos;c&apos;</string>
+     <key>message</key>
+     <string>Although the value stored to &apos;c&apos; is used in the enclosing expression, the value is never actually read from &apos;c&apos;</string>
+    </dict>
+   </array>
+   <key>description</key><string>Although the value stored to &apos;c&apos; is used in the enclosing expression, the value is never actually read from &apos;c&apos;</string>
+   <key>category</key><string>Unused code</string>
+   <key>type</key><string>Dead nested assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>bad3589e2d2c371fb3bcf7e90fc58a93</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>SHA1Transform</string>
+  <key>issue_hash_function_offset</key><string>49</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>113</integer>
+   <key>col</key><integer>13</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  <key>ExecutedLines</key>
+  <dict>
+   <key>0</key>
+   <array>
+    <integer>113</integer>
+   </array>
+  </dict>
+  </dict>
+  <dict>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>113</integer>
+      <key>col</key><integer>17</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>21</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>25</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Although the value stored to &apos;d&apos; is used in the enclosing expression, the value is never actually read from &apos;d&apos;</string>
+     <key>message</key>
+     <string>Although the value stored to &apos;d&apos; is used in the enclosing expression, the value is never actually read from &apos;d&apos;</string>
+    </dict>
+   </array>
+   <key>description</key><string>Although the value stored to &apos;d&apos; is used in the enclosing expression, the value is never actually read from &apos;d&apos;</string>
+   <key>category</key><string>Unused code</string>
+   <key>type</key><string>Dead nested assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>65bb4f236be4a0e650451bc62fbdfe32</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>SHA1Transform</string>
+  <key>issue_hash_function_offset</key><string>49</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>113</integer>
+   <key>col</key><integer>17</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  <key>ExecutedLines</key>
+  <dict>
+   <key>0</key>
+   <array>
+    <integer>113</integer>
+   </array>
+  </dict>
+  </dict>
+  <dict>
+   <key>path</key>
+   <array>
+    <dict>
+     <key>kind</key><string>event</string>
+     <key>location</key>
+     <dict>
+      <key>line</key><integer>113</integer>
+      <key>col</key><integer>21</integer>
+      <key>file</key><integer>0</integer>
+     </dict>
+     <key>ranges</key>
+     <array>
+       <array>
+        <dict>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>25</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+        <dict>
+         <key>line</key><integer>113</integer>
+         <key>col</key><integer>25</integer>
+         <key>file</key><integer>0</integer>
+        </dict>
+       </array>
+     </array>
+     <key>depth</key><integer>0</integer>
+     <key>extended_message</key>
+     <string>Although the value stored to &apos;e&apos; is used in the enclosing expression, the value is never actually read from &apos;e&apos;</string>
+     <key>message</key>
+     <string>Although the value stored to &apos;e&apos; is used in the enclosing expression, the value is never actually read from &apos;e&apos;</string>
+    </dict>
+   </array>
+   <key>description</key><string>Although the value stored to &apos;e&apos; is used in the enclosing expression, the value is never actually read from &apos;e&apos;</string>
+   <key>category</key><string>Unused code</string>
+   <key>type</key><string>Dead nested assignment</string>
+   <key>check_name</key><string>deadcode.DeadStores</string>
+   <!-- This hash is experimental and going to change! -->
+   <key>issue_hash_content_of_line_in_context</key><string>4625480e2e8c32223c6e7c5ed22b4b25</string>
+  <key>issue_context_kind</key><string>function</string>
+  <key>issue_context</key><string>SHA1Transform</string>
+  <key>issue_hash_function_offset</key><string>49</string>
+  <key>location</key>
+  <dict>
+   <key>line</key><integer>113</integer>
+   <key>col</key><integer>21</integer>
+   <key>file</key><integer>0</integer>
+  </dict>
+  <key>ExecutedLines</key>
+  <dict>
+   <key>0</key>
+   <array>
+    <integer>113</integer>
    </array>
   </dict>
   </dict>

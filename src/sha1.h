@@ -1,35 +1,26 @@
-/*********************************************************************
-* Filename:   sha1.h
-* Author:     Brad Conte (brad AT bradconte.com)
-* Copyright:
-* Disclaimer: This code is presented "as is" without any guarantees.
-* Details:    Defines the API for the corresponding SHA1 implementation.
-*********************************************************************/
+/*	$OpenBSD: sha1.h,v 1.6 2014/11/16 17:39:09 tedu Exp $	*/
 
-#ifndef SHA1_H
-#define SHA1_H
+/*
+ * SHA-1 in C
+ * By Steve Reid <steve@edmweb.com>
+ * 100% Public Domain
+ */
 
-/*************************** HEADER FILES ***************************/
-#include <stddef.h>
+#ifndef _SHA1_H_
+#define _SHA1_H_
 
-/****************************** MACROS ******************************/
-#define SHA1_BLOCK_SIZE 20              // SHA1 outputs a 20 byte digest
-
-/**************************** DATA TYPES ****************************/
-typedef unsigned char BYTE;             // 8-bit byte
-typedef unsigned int  WORD;             // 32-bit word, change to "long" for 16-bit machines
+#define	SHA1_BLOCK_LENGTH		64
+#define	SHA1_DIGEST_LENGTH		20
 
 typedef struct {
-	BYTE data[64];
-	WORD datalen;
-	unsigned long long bitlen;
-	WORD state[5];
-	WORD k[4];
+	u_int32_t	state[5];
+	u_int64_t	count;
+	unsigned char	buffer[SHA1_BLOCK_LENGTH];
 } SHA1_CTX;
+  
+void SHA1Init(SHA1_CTX * context);
+void SHA1Transform(u_int32_t state[5], const unsigned char buffer[SHA1_BLOCK_LENGTH]);
+void SHA1Update(SHA1_CTX *context, const void *data, unsigned int len);
+void SHA1Final(unsigned char digest[SHA1_DIGEST_LENGTH], SHA1_CTX *context);
 
-/*********************** FUNCTION DECLARATIONS **********************/
-void sha1_init(SHA1_CTX *ctx);
-void sha1_update(SHA1_CTX *ctx, const BYTE data[], size_t len);
-void sha1_final(SHA1_CTX *ctx, BYTE hash[]);
-
-#endif   // SHA1_H
+#endif /* _SHA1_H_ */

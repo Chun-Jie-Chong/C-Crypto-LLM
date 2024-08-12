@@ -1,43 +1,23 @@
+Analyzing and compiling aes.c to aes.o
+Compilation and analysis of aes.c succeeded
+Analyzing and compiling md5.c to md5.o
+Compilation and analysis of md5.c succeeded
 Analyzing and compiling sha1.c to sha1.o
-sha1.c:95:2: warning: Duplicate code detected [alpha.clone.CloneChecker]
-        ctx->data[62] = ctx->bitlen >> 8;
-        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sha1.c:96:2: note: Similar code here
-        ctx->data[61] = ctx->bitlen >> 16;
-        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sha1.c:107:3: warning: Duplicate code detected [alpha.clone.CloneChecker]
-                hash[i + 4]  = (ctx->state[1] >> (24 - i * 8)) & 0x000000ff;
-                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sha1.c:108:3: note: Similar code here
-                hash[i + 8]  = (ctx->state[2] >> (24 - i * 8)) & 0x000000ff;
-                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-2 warnings generated.
+sha1.c:113:5: warning: Value stored to 'a' is never read [deadcode.DeadStores]
+    a = b = c = d = e = 0;
+    ^   ~~~~~~~~~~~~~~~~~
+sha1.c:113:9: warning: Although the value stored to 'b' is used in the enclosing expression, the value is never actually read from 'b' [deadcode.DeadStores]
+    a = b = c = d = e = 0;
+        ^   ~~~~~~~~~~~~~
+sha1.c:113:13: warning: Although the value stored to 'c' is used in the enclosing expression, the value is never actually read from 'c' [deadcode.DeadStores]
+    a = b = c = d = e = 0;
+            ^   ~~~~~~~~~
+sha1.c:113:17: warning: Although the value stored to 'd' is used in the enclosing expression, the value is never actually read from 'd' [deadcode.DeadStores]
+    a = b = c = d = e = 0;
+                ^   ~~~~~
+sha1.c:113:21: warning: Although the value stored to 'e' is used in the enclosing expression, the value is never actually read from 'e' [deadcode.DeadStores]
+    a = b = c = d = e = 0;
+                    ^   ~
+5 warnings generated.
 Compilation and analysis of sha1.c succeeded
-Analyzing and compiling sha256.c to sha256.o
-sha256.c:36:5: warning: Duplicate code detected [alpha.clone.CloneChecker]
-    a = ctx->state[0];
-    ^~~~~~~~~~~~~~~~~~
-sha256.c:37:5: note: Similar code here
-    b = ctx->state[1];
-    ^~~~~~~~~~~~~~~~~~
-sha256.c:58:5: warning: Duplicate code detected [alpha.clone.CloneChecker]
-    ctx->state[0] += a;
-    ^~~~~~~~~~~~~~~~~~~
-sha256.c:59:5: note: Similar code here
-    ctx->state[1] += b;
-    ^~~~~~~~~~~~~~~~~~~
-sha256.c:113:5: warning: Duplicate code detected [alpha.clone.CloneChecker]
-    ctx->data[62] = ctx->bitlen >> 8;
-    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sha256.c:114:5: note: Similar code here
-    ctx->data[61] = ctx->bitlen >> 16;
-    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sha256.c:126:9: warning: Duplicate code detected [alpha.clone.CloneChecker]
-        hash[i + 4]  = (ctx->state[1] >> (24 - i * 8)) & 0x000000ff;
-        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-sha256.c:127:9: note: Similar code here
-        hash[i + 8]  = (ctx->state[2] >> (24 - i * 8)) & 0x000000ff;
-        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-4 warnings generated.
-Compilation and analysis of sha256.c succeeded
 Compilation and static analysis completed.
