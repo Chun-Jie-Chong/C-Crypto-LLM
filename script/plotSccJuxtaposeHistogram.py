@@ -7,6 +7,8 @@
 # first argument: complexity or complexity/code
 # second argument: chatgpt output file
 # third argument: human output file
+# forth argument: ternary chatgpt output file
+# fifth argument: ternary human output file
 # Examples:
 # python3 script_name.py complexity scc_chatgpt.txt scc_human.txt
 # python3 script_name.py complexity/code scc_chatgpt.txt scc_human.txt
@@ -30,11 +32,40 @@ def parse_input(input_text):
                     code = int(parts[-2])
                     complexity = int(parts[-1])
                     complexity_per_code = round (complexity / code, 2)
-                    file_data.append((file_name, complexity, complexity_per_code))
+                    file_data.append((file_name, complexity, complexity_per_code, code))
+    return file_data
+
+def parse_ternary_operator(input_text):
+    entries = [x.strip() for x in input_text.splitlines()]
+    file_data = []
+
+    for entry in entries:
+        parts = entry.split(':')
+        file_name = parts[0]
+        complexity = int(parts[1])
+        file_data.append((file_name, complexity))
     return file_data
 
 # Function to plot the data
-def plot_data(file_data1, file_data2, metric):
+def plot_data(file_data1, file_data2, ternary_1, ternary_2, metric):
+    # Match file name in file_data1 with ternary_1 and add complexity from ternary_1 to file_data1
+    for i, data in enumerate(file_data1):
+        file_name = data[0]
+        for data2 in ternary_1:
+            if data2[0] == file_name:
+                newComplexity = data2[1] + data[1]
+                newComplexityPerCode = round(newComplexity / data[3], 2)
+                file_data1[i] = (file_name, newComplexity, newComplexityPerCode, data[3])
+                break
+    # Match file name in file_data2 with ternary_2 and add complexity from ternary_2 to file_data2
+    for i, data in enumerate(file_data2):
+        file_name = data[0]
+        for data2 in ternary_2:
+            if data2[0] == file_name:
+                newComplexity = data2[1] + data[1]
+                newComplexityPerCode = round(newComplexity / data[3], 2)
+                file_data2[i] = (file_name, newComplexity, newComplexityPerCode, data[3])
+                break
     # Sort the first file data by the selected metric
     if metric == 'complexity':
         file_data1.sort(key=lambda x: x[1])
@@ -53,6 +84,8 @@ def plot_data(file_data1, file_data2, metric):
     # Align the second file data to the sorted file names of the first file
     y2_values = [file_data2_dict.get(file_name, 0) for file_name in file_names1]
 
+    print(y1_values)
+    print(y2_values)
     # Plotting the histograms
     x = np.arange(len(file_names1))
     width = 0.4
@@ -66,7 +99,7 @@ def plot_data(file_data1, file_data2, metric):
     # Add labels, title, and custom x-axis tick labels
     ax.set_xlabel('File Names')
     ax.set_ylabel(metric.capitalize())
-    ax.set_title(f'{metric.capitalize()} by file (sorted based on ChatGPT)')
+    ax.set_title(f'Crypto {metric.capitalize()} by file (sorted based on ChatGPT)')
     ax.set_xticks(x)
     ax.set_xticklabels(file_names1, rotation=45, ha='right')
     ax.legend(loc='upper left')
@@ -93,6 +126,8 @@ def main():
     parser.add_argument('metric', choices=['complexity', 'complexity/code'], help='Metric to plot: complexity or complexity/code')
     parser.add_argument('input1', help='First input file')
     parser.add_argument('input2', help='Second input file')
+    parser.add_argument('input3', help='Third input file')
+    parser.add_argument('input4', help='Forth input file')
 
     args = parser.parse_args()
 
@@ -103,13 +138,23 @@ def main():
     # Read the input from the second file
     with open(args.input2, 'r') as file2:
         input_text2 = file2.read()
+        
+    # Read the input from the third file
+    with open(args.input3, 'r') as file3:
+        input_text3 = file3.read()
+    
+    # Read the input from the forth file
+    with open(args.input4, 'r') as file4:
+        input_text4 = file4.read()
 
     # Extract data from the input texts
     file_data1 = parse_input(input_text1)
     file_data2 = parse_input(input_text2)
+    ternary_1 = parse_ternary_operator(input_text3)
+    ternary_2 = parse_ternary_operator(input_text4)
 
     # Plot the data based on the selected metric
-    plot_data(file_data1, file_data2, args.metric)
+    plot_data(file_data1, file_data2, ternary_1, ternary_2, args.metric)
 
 if __name__ == "__main__":
     main()
