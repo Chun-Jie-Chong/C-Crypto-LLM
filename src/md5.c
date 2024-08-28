@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
+#include <stdlib.h>
 // ```
 
 // Here is the implementation:
@@ -212,6 +213,167 @@ static void Decode(uint32_t *output, const uint8_t *input, size_t len) {
                 (((uint32_t)input[j + 2]) << 16) | (((uint32_t)input[j + 3]) << 24);
   }
 }
+
+void compute_md5(const unsigned char *data, size_t length, unsigned char digest[MD5_DIGEST_LENGTH]) {
+    MD5_CTX ctx;
+    MD5Init(&ctx);
+    MD5Update(&ctx, data, length);
+    MD5Final(digest, &ctx);
+}
+
+// Function to print MD5 hash as a hex string
+void print_md5(const unsigned char digest[MD5_DIGEST_LENGTH]) {
+
+    for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+        printf("%02x", digest[i]);
+    }
+    printf("\n");
+}
+
+// Function to convert binary data to hex string
+void bin_to_hex(const unsigned char *bin, size_t len, char *hex) {
+    for (size_t i = 0; i < len; i++) {
+        sprintf(hex + 2 * i, "%02x", bin[i]);
+    }
+    hex[2 * len] = '\0';  // Null-terminate the string
+}
+
+// Test known MD5 vectors
+void test_md5_known_vectors() {
+    // Define test vectors (input and expected MD5 hash)
+    const char *test_inputs[] = {
+        "abc",
+        "hello, world",
+        "The quick brown fox jumps over the lazy dog"
+    };
+    
+    const char *expected_hashes[] = {
+        "900150983cd24fb0d6963f7d28e17f72",
+        "e4d7f1b4ed2e42d15898f4b27b019da4",
+        "9e107d9d372bb6826bd81d3542a419d6"
+    };
+    
+    // Number of test vectors
+    size_t num_tests = sizeof(test_inputs) / sizeof(test_inputs[0]);
+    
+    for (size_t i = 0; i < num_tests; i++) {
+        unsigned char digest[MD5_DIGEST_LENGTH];
+        compute_md5((unsigned char *)test_inputs[i], strlen(test_inputs[i]), digest);
+        
+        printf("Input: \"%s\"\n", test_inputs[i]);
+        printf("Expected MD5: %s\n", expected_hashes[i]);
+        printf("Computed MD5: ");
+        print_md5(digest);
+
+        // Convert binary digest to hex string
+        char result[2 * MD5_DIGEST_LENGTH + 1];
+        bin_to_hex(digest, MD5_DIGEST_LENGTH, result);
+
+        if (strcmp(result, expected_hashes[i]) == 0) {
+            printf("Test passed\n\n");
+        } else {
+            printf("Test failed\n\n");
+        }
+    }
+}
+
+int main() {
+    test_md5_known_vectors();
+    return 0;
+}
+
+// int main(int argc, char *argv[]) {
+//     if (argc != 2) {
+//         fprintf(stderr, "Usage: %s <input_file>\n", argv[0]);
+//         return 1;
+//     }
+
+//     FILE *file = fopen(argv[1], "rb");
+//     if (!file) {
+//         perror("Failed to open input file");
+//         return 1;
+//     }
+
+//     // Determine file size
+//     fseek(file, 0, SEEK_END);
+//     long file_size = ftell(file);
+//     fseek(file, 0, SEEK_SET);
+
+//     // Allocate buffer to read file data
+//     unsigned char *input_data = malloc(file_size);
+//     if (!input_data) {
+//         perror("Failed to allocate memory");
+//         fclose(file);
+//         return 1;
+//     }
+
+//     fread(input_data, 1, file_size, file);
+//     fclose(file);
+
+//     // Compute MD5 of the input data
+//     unsigned char original_md5[MD5_DIGEST_LENGTH];
+//     compute_md5(input_data, file_size, original_md5);
+
+//     // Encode the data (Placeholder, replace with actual encoding logic)
+//     unsigned char *encoded_data = malloc(file_size);  // Assuming same size after encoding
+//     Encode(encoded_data, (const uint32_t *)input_data, file_size);
+
+//     // Decode the data (Placeholder, replace with actual decoding logic)
+//     unsigned char *decoded_data = malloc(file_size);
+//     Decode((uint32_t *)decoded_data, (const uint8_t *)encoded_data, file_size);
+
+//     // Compute MD5 of the decoded data
+//     unsigned char decoded_md5[MD5_DIGEST_LENGTH];
+//     compute_md5(decoded_data, file_size, decoded_md5);
+
+//     // Create output file name with "_result.txt" appended
+//     char result_filename[256];
+//     snprintf(result_filename, sizeof(result_filename), "%s_result.txt", argv[1]);
+
+//     // Open the result file for writing
+//     FILE *result_file = fopen(result_filename, "w");
+//     if (!result_file) {
+//         perror("Failed to open result file");
+//         free(input_data);
+//         free(encoded_data);
+//         free(decoded_data);
+//         return 1;
+//     }
+
+//     // Write the input, encoded, decoded data, and MD5 checksums to the result file
+//     fprintf(result_file, "Input Data:\n");
+//     fwrite(input_data, 1, file_size, result_file);
+//     fprintf(result_file, "\n\nEncoded Data:\n");
+//     fwrite(encoded_data, 1, file_size, result_file);
+//     fprintf(result_file, "\n\nDecoded Data:\n");
+//     fwrite(decoded_data, 1, file_size, result_file);
+
+//     // Write MD5 checksums
+//     fprintf(result_file, "\n\nOriginal MD5: ");
+//     for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+//         fprintf(result_file, "%02x", original_md5[i]);
+//     }
+
+//     fprintf(result_file, "\nDecoded MD5: ");
+//     for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
+//         fprintf(result_file, "%02x", decoded_md5[i]);
+//     }
+
+//     // Write the comparison result
+//     if (memcmp(original_md5, decoded_md5, MD5_DIGEST_LENGTH) == 0) {
+//         fprintf(result_file, "\n\nMD5 check passed: Decoded data matches original input.\n");
+//     } else {
+//         fprintf(result_file, "\n\nMD5 check failed: Decoded data does not match original input.\n");
+//     }
+
+//     // Clean up
+//     fclose(result_file);
+//     free(input_data);
+//     free(encoded_data);
+//     free(decoded_data);
+
+//     return 0;
+// }
 // ```
 
 // This code provides a complete implementation of the MD5 algorithm. The `MD5Init`, `MD5Update`, and `MD5Final` functions are used to initialize the context, process input data, and finalize the hash computation, respectively. The `MD5Transform` function performs the core MD5 transformation processing using bitwise operations and predefined constants.

@@ -1,0 +1,4 @@
+Input data: 3131313131313131
+Encrypted data: cb6889f48e7598caa4d923d81bfe3af8
+Decrypted data: 3131313131313131
+Test case passed.

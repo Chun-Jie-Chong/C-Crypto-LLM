@@ -1,0 +1,4 @@
+Input data: 3132333435353600
+Encrypted data: bf7161da0bdef05db5424e16f5a849dc
+Decrypted data: 3132333435353600
+Test case passed.

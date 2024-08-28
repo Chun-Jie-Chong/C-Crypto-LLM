@@ -144,17 +144,113 @@ void print_sha1_hash(const unsigned char * hash) {
     printf("\n");
 }
 
-int main() {
+// int main() {
+//     SHA1_CTX ctx;
+//     unsigned char hash[SHA1_DIGEST_LENGTH];
+
+//     SHA1Init(&ctx);
+//     SHA1Update(&ctx, "Hello, world!", 13);
+//     SHA1Final(hash, &ctx);
+
+//     printf("SHA1 Hash: ");
+//     print_sha1_hash(hash);
+
+//     return 0;
+// }
+// void test_sha1(const char *input, const char *expected_output) {
+//     SHA1_CTX ctx;
+//     unsigned char digest[SHA1_DIGEST_LENGTH];
+//     char digest_hex[SHA1_DIGEST_LENGTH * 2 + 1];
+//     int i;
+
+//     SHA1Init(&ctx);
+//     SHA1Update(&ctx, input, strlen(input));
+//     SHA1Final(digest, &ctx);
+
+//     for (i = 0; i < SHA1_DIGEST_LENGTH; i++) {
+//         sprintf(digest_hex + i * 2, "%02x", digest[i]);
+//     }
+//     digest_hex[SHA1_DIGEST_LENGTH * 2] = '\0';
+
+//     if (strcmp(digest_hex, expected_output) == 0) {
+//         printf("Test passed.\n");
+//     } else {
+//         printf("Test failed. Expected %s but got %s\n", expected_output, digest_hex);
+//     }
+// }
+
+// int main() {
+//     test_sha1("", "a99903f6e5b4f8f0f2d0e6c2d3b5f27568b7d0d9");
+//     test_sha1("abc", "a9993e364706816aba3e25717850c26c9cd0d89d");
+//     test_sha1("message digest", "c1224d46e2f6e2f4d1c2e16d4c5c4f0d9f3e9d3b");
+//     test_sha1("The quick brown fox jumps over the lazy dog", "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12");
+//     return 0;
+// }
+
+void compute_sha1(const unsigned char *data, size_t length, unsigned char digest[SHA1_DIGEST_LENGTH]) {
     SHA1_CTX ctx;
-    unsigned char hash[SHA1_DIGEST_LENGTH];
-
     SHA1Init(&ctx);
-    SHA1Update(&ctx, "Hello, world!", 13);
-    SHA1Final(hash, &ctx);
+    SHA1Update(&ctx, data, length);
+    SHA1Final(digest, &ctx);
+}
 
-    printf("SHA1 Hash: ");
-    print_sha1_hash(hash);
+// Function to print MD5 hash as a hex string
+void print_sha1(const unsigned char digest[SHA1_DIGEST_LENGTH]) {
 
+    for (int i = 0; i < SHA1_DIGEST_LENGTH; i++) {
+        printf("%02x", digest[i]);
+    }
+    printf("\n");
+}
+
+// Function to convert binary data to hex string
+void bin_to_hex(const unsigned char *bin, size_t len, char *hex) {
+    for (size_t i = 0; i < len; i++) {
+        sprintf(hex + 2 * i, "%02x", bin[i]);
+    }
+    hex[2 * len] = '\0';  // Null-terminate the string
+}
+
+void test_sha1_known_vectors() {
+    // Define test vectors (input and expected SHA1 hash)
+    const char *test_inputs[] = {
+        "abc",
+        "hello, world",
+        "The quick brown fox jumps over the lazy dog"
+    };
+
+    const char *expected_hashes[] = {
+        "a9993e364706816aba3e25717850c26c9cd0d89d",
+        "b7e23ec29af22b0b4e41da31e868d57226121c84",
+        "2fd4e1c67a2d28fced849ee1bb76e7391b93eb12"
+    };
+
+    // Number of test vectors
+    size_t num_tests = sizeof(test_inputs) / sizeof(test_inputs[0]);
+
+    for (size_t i = 0; i < num_tests; i++) {
+        unsigned char digest[SHA1_DIGEST_LENGTH];
+        compute_sha1((unsigned char *)test_inputs[i], strlen(test_inputs[i]), digest);
+        
+        printf("Input: \"%s\"\n", test_inputs[i]);
+        printf("Expected SHA1: %s\n", expected_hashes[i]);
+        printf("Computed SHA1: ");
+        print_sha1(digest);
+
+        // Convert binary digest to hex string
+        char result[2 * SHA1_DIGEST_LENGTH + 1];
+        bin_to_hex(digest, SHA1_DIGEST_LENGTH, result);
+
+        if (strcmp(result, expected_hashes[i]) == 0) {
+            printf("Test passed\n\n");
+        } else {
+            printf("Test failed\n\n");
+        }
+    }
+}
+
+int main() {
+    test_sha1_known_vectors();
     return 0;
 }
 // ```

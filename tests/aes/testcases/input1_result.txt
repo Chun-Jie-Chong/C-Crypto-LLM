@@ -1,0 +1,4 @@
+Input data: 68656c6c6f776f72
+Encrypted data: 86e7abe7625dde3bdf7bc59d0a043877
+Decrypted data: 68656c6c6f776f72
+Test case passed.

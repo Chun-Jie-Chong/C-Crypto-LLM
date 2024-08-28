@@ -316,85 +316,99 @@ static void KeyExpansion(const uint8_t *key, uint32_t *w, int keysize) {
     }
 }
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s <input file>\n", argv[0]);
-        return 1;
-    }
+// int main(int argc, char *argv[]) {
+//     if (argc != 2) {
+//         fprintf(stderr, "Usage: %s <input file>\n", argv[0]);
+//         return 1;
+//     }
 
-    // Open the input file
-    FILE *file = fopen(argv[1], "rb");
-    if (!file) {
-        perror("Failed to open input file");
-        return 1;
-    }
+//     // Open the input file
+//     FILE *file = fopen(argv[1], "rb");
+//     if (!file) {
+//         perror("Failed to open input file");
+//         return 1;
+//     }
 
-    // Determine the size of the input file
-    fseek(file, 0, SEEK_END);
-    size_t file_size = ftell(file);
-    fseek(file, 0, SEEK_SET);
+//     // Determine the size of the input file
+//     fseek(file, 0, SEEK_END);
+//     size_t file_size = ftell(file);
+//     fseek(file, 0, SEEK_SET);
 
-    // Read the file contents into a buffer
-    uint8_t *input_data = malloc(file_size);
-    if (!input_data) {
-        perror("Failed to allocate memory");
-        fclose(file);
-        return 1;
-    }
+//     // Read the file contents into a buffer
+//     uint8_t *input_data = malloc(file_size);
+//     if (!input_data) {
+//         perror("Failed to allocate memory");
+//         fclose(file);
+//         return 1;
+//     }
 
-    fread(input_data, 1, file_size, file);
-    fclose(file);
+//     fread(input_data, 1, file_size, file);
+//     fclose(file);
 
-    // Example usage of AES functions (you can modify this as needed)
-    AES_CTX ctx;
-    uint8_t output_data[16];  // Adjust size as needed for your test
+//     // Example usage of AES functions (you can modify this as needed)
+//     AES_CTX ctx;
+//     uint8_t output_data[16];  // Adjust size as needed for your test
 
-    // Set up a key (example key, replace with actual key logic)
-    uint8_t key[16] = {
-        0x2b, 0x7e, 0x15, 0x16,
-        0x28, 0xae, 0xd2, 0xa6,
-        0xab, 0xf7, 0x88, 0x09,
-        0xcf, 0x4f, 0x3c, 0x76
-    };
-    AES_Setkey(&ctx, key, 128);
+//     // Set up a key (example key, replace with actual key logic)
+//     uint8_t key[16] = {
+//         0x2b, 0x7e, 0x15, 0x16,
+//         0x28, 0xae, 0xd2, 0xa6,
+//         0xab, 0xf7, 0x88, 0x09,
+//         0xcf, 0x4f, 0x3c, 0x76
+//     };
+//     AES_Setkey(&ctx, key, 128);
 
-    // Encrypt the input data
-    AES_Encrypt(&ctx, input_data, output_data);
+//     // Encrypt the input data
+//     AES_Encrypt(&ctx, input_data, output_data);
 
-    // Generate output filename
-    char output_filename[256];
-    snprintf(output_filename, sizeof(output_filename), "%s_result.txt", argv[1]);
+//     // Generate output filename
+//     char output_filename[256];
+//     snprintf(output_filename, sizeof(output_filename), "%s_result.txt", argv[1]);
 
-    // Open the output file in text mode
-    FILE *output_file = fopen(output_filename, "w");
-    if (!output_file) {
-        perror("Failed to open output file");
-        free(input_data);
-        return 1;
-    }
+//     // Open the output file in text mode
+//     FILE *output_file = fopen(output_filename, "w");
+//     if (!output_file) {
+//         perror("Failed to open output file");
+//         free(input_data);
+//         return 1;
+//     }
+//     // Write the input data as a hex string
+//     fprintf(output_file, "Input data: ");
+//     for (size_t i = 0; i < sizeof(input_data); i++) {
+//         fprintf(output_file, "%02x", input_data[i]);
+//     }
+//     fprintf(output_file, "\n");
 
-    // Write the encrypted data as a hex string
-    fprintf(output_file, "Encrypted data: ");
-    for (size_t i = 0; i < sizeof(output_data); i++) {
-        fprintf(output_file, "%02x", output_data[i]);
-    }
-    fprintf(output_file, "\n");
+//     // Write the encrypted data as a hex string
+//     fprintf(output_file, "Encrypted data: ");
+//     for (size_t i = 0; i < sizeof(output_data); i++) {
+//         fprintf(output_file, "%02x", output_data[i]);
+//     }
+//     fprintf(output_file, "\n");
 
-    // Decrypt the data
-    AES_Decrypt(&ctx, output_data, input_data);
+//     // Decrypt the data
+//     uint8_t *result = malloc(file_size);
+//     AES_Decrypt(&ctx, output_data, result);
 
-    // Write the decrypted data as a hex string
-    fprintf(output_file, "Decrypted data: ");
-    for (size_t i = 0; i < sizeof(input_data); i++) {
-        fprintf(output_file, "%02x", input_data[i]);
-    }
-    fprintf(output_file, "\n");
+//     // Write the decrypted data as a hex string
+//     fprintf(output_file, "Decrypted data: ");
+//     for (size_t i = 0; i < sizeof(result); i++) {
+//         fprintf(output_file, "%02x", result[i]);
+//     }
+//     fprintf(output_file, "\n");
+//     // Compare the result with the input data
+//     int compare_result = memcmp(input_data, result, file_size);
+//     if (compare_result == 0) {
+//         fprintf(output_file, "Test case passed.\n");
+//     } else {
+//         fprintf(output_file, "Test case failed.\n");
+//     }
 
-    // Close the output file
-    fclose(output_file);
+//     // Close the output file
+//     fclose(output_file);
 
-    // Free allocated memory
-    free(input_data);
+//     // Free allocated memory
+//     free(input_data);
 
-    return 0;
-}
+//     return 0;
+// }
